@@ -1,3 +1,7 @@
+'''
+This code was initially written and run in a kaggle notebook so it would need some reorganising to use it
+'''
+
 ## Fine-Tuning the FinBERT Sentiment Analysis model
 
 # importing the necessary libraries
