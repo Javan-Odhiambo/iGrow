@@ -1,0 +1,32 @@
+{% extends 'dashboard-base.html' %}
+{% load static %}
+{% load tailwind_filters %}
+{% load crispy_forms_tags %}
+
+
+{% block title %}
+  Crop Disease prediction
+{% endblock %}
+
+{% block main %}
+  <main class="text-gray-900 container mx-auto h-ful bg-white">
+    <h1 class="text-2xl font-bold text-center my-5">Crop Pest classification</h1>
+
+    <form method="post" enctype="multipart/form-data" class="bg-white shadow-md rounded mt-4 px-8 pt-6 pb-8 mb-4">
+      {% csrf_token %}
+      {% crispy form %}
+    </form>
+
+    {% if predicted_result %}
+      <div class="bg-white border-2 border-teal-600 rounded mt-4 px-8 pt-6 pb-8 mb-4">
+        <h2 class="text-xl font-semibold mb-4">Results</h2>
+        <p>
+          Pest Name: <strong>{{ predicted_result.result }}</strong>
+        </p>
+        <p>
+          Confidence: <strong>{{ predicted_result.confidence }}%</strong>
+        </p>
+      </div>
+    {% endif %}
+  </main>
+{% endblock %}

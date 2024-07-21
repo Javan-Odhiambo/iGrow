@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}
+
+{% endblock %}
+
+{% block body %}
+  {% include './components/dashboard-header.html' %}
+  <div class="h-screen flex overflow-hidden">
+    {% include './components/dashboard-sidebar.html' %}
+
+    {% block main %}
+
+    {% endblock %}
+    {% include './components/dashboard-footer.html' %}
+  </div>
+  <script>
+    const sidebar = document.getElementById('sidebar')
+    const openSidebarButton = document.getElementById('open-sidebar')
+
+    openSidebarButton.addEventListener('click', (e) => {
+      e.stopPropagation()
+      sidebar.classList.toggle('-translate-x-full')
+    })
+
+    // Close the sidebar when clicking outside of it
+    document.addEventListener('click', (e) => {
+      if (!sidebar.contains(e.target) && !openSidebarButton.contains(e.target)) {
+        sidebar.classList.add('-translate-x-full')
+      }
+    })
+  </script>
+{% endblock %}
